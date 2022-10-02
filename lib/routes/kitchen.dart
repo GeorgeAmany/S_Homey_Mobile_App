@@ -30,11 +30,11 @@ class _KitchenState extends State<Kitchen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.pink.shade400,
+        backgroundColor: Colors.blue.shade400,
       appBar: AppBar(
           title: const Text('Kitchen ',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
-          backgroundColor: Colors.pink.shade400
+          backgroundColor: Colors.blue.shade400
       ),
 
         body: RefreshIndicator(
@@ -58,7 +58,7 @@ class _KitchenState extends State<Kitchen> {
                                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.pink.shade400,
+                              primary: Colors.blue.shade400,
                             ),
                             onPressed: () async {
                               final prefs = await SharedPreferences.getInstance();
@@ -144,13 +144,20 @@ class _KitchenState extends State<Kitchen> {
 
 
               if(extractedData['type']=='3') {
-                loadDataa.add(RoomCounter(
-                  id: RoomID,
-                  Name: extractedData['Name'],
-                  HomeID: extractedData['HomeID'],
-                  type: extractedData['type'],
-                  socketsN: extractedData['socketsN'],
-                ));
+
+                if(prefs.getString('selectedHome') == extractedData['HomeID']) {
+
+                  loadDataa.add(RoomCounter(
+                    id: RoomID,
+                    Name: extractedData['Name'],
+                    HomeID: extractedData['HomeID'],
+                    type: extractedData['type'],
+                    socketsN: extractedData['socketsN'],
+                  ));
+
+                }
+
+
               }
 
 

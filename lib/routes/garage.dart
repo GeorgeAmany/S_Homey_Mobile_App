@@ -67,11 +67,11 @@ class _GarageState extends State<Garage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.pink.shade400,
+        backgroundColor: Colors.blue.shade400,
       appBar: AppBar(
           title: const Text('Garage',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
-          backgroundColor: Colors.pink.shade400
+          backgroundColor: Colors.blue.shade400
       ),
 
         body: Padding(
@@ -85,31 +85,6 @@ class _GarageState extends State<Garage> {
                   scrollDirection:Axis.vertical ,
                   children: [
 
-                    SizedBox(
-                        height: 50, // fixed height
-                        child: ListView.builder(
-                          itemCount: 1 ,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text('Light',
-                                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
-                              trailing: Switch(
-
-                                value: lampvalue == 1? true : false,
-                                onChanged: (value) {
-                                  turnOn(lampid,lampvalue);
-                                },
-                                activeTrackColor: Colors.lightGreenAccent,
-                                activeColor: Colors.green,
-                              ),
-                            );
-                          },
-                        )
-                    ),
-
-
-
-
 
                     SizedBox(
                         height: 50, // fixed height
@@ -122,6 +97,16 @@ class _GarageState extends State<Garage> {
                               trailing: Switch(
                                 value: doorValue == 1? true : false,
                                 onChanged: (value) {
+
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                            child:
+                                            Center(child: CircularProgressIndicator()));
+                                      });
+
 
                                   turnOn(doorID,doorValue);
 
@@ -411,12 +396,14 @@ class _GarageState extends State<Garage> {
         .patch(
       url,
       body: json.encode({
-        'value': valueD == 0 ? 1 : 0,
+        'value': valuee == 0 ? 1 : 0,
       }),
     )
         .then((valuee) {
 
-      _getSockets();
+      Navigator.of(context).pop();
+
+
     });
   }
 }

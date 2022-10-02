@@ -66,24 +66,23 @@ class _drawerState extends State<drawer> {
 
 
   }
-
   Widget cardB(text, fun){
     return Card(
       color: Color(0x71006FFF),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      child: FlatButton(
-          padding: EdgeInsets.all(10),
-          minWidth: double.infinity,
-          textColor: Color(0xFFFFFFFF),
-          onPressed: fun,
-          child: Text(
-            text,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          )),
+      // child: FlatButton(
+      //     padding: EdgeInsets.all(10),
+      //     minWidth: double.infinity,
+      //     textColor: Color(0xFFFFFFFF),
+      //     onPressed: fun,
+      //     child: Text(
+      //       text,
+      //       style: TextStyle(
+      //         fontWeight: FontWeight.bold,
+      //       ),
+      //     )),
     );
 
   }
@@ -107,8 +106,8 @@ class _drawerState extends State<drawer> {
                   child: Text('Devices',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.pink.shade400,
-                  side: BorderSide(width:3, color:Colors.blue),
+                  primary: Colors.blue.shade400,
+                  side: BorderSide(width:3, color:Colors.blue.shade400),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
@@ -138,8 +137,8 @@ class _drawerState extends State<drawer> {
                   child: Text('kitchens',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.pink.shade400,
-                  side: BorderSide(width:3, color:Colors.blue),
+                  primary: Colors.blue.shade400,
+                  side: BorderSide(width:3, color:Colors.blue.shade400),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
@@ -169,8 +168,8 @@ class _drawerState extends State<drawer> {
                   child: Text('Bathrooms',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.pink.shade400,
-                  side: BorderSide(width:3, color:Colors.blue),
+                  primary: Colors.blue.shade400,
+                  side: BorderSide(width:3, color:Colors.blue.shade400),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
@@ -197,7 +196,7 @@ class _drawerState extends State<drawer> {
 
           ElevatedButton(
               child: SizedBox(
-                  child: Text('Lock Down',
+                  child: Text('Check Home',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
                   primary: Colors.amberAccent,
@@ -231,8 +230,8 @@ class _drawerState extends State<drawer> {
                   child: Text('Garage',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.pink.shade400,
-                  side: BorderSide(width:3, color:Colors.blue),
+                  primary: Colors.blue.shade400,
+                  side: BorderSide(width:3, color:Colors.blue.shade400),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)

@@ -6,8 +6,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:http/http.dart'as http;
 import 'package:flutter/material.dart';
 import 'package:project/models/Sockets.dart';
-import 'package:project/models/lock_down.dart';
-import 'package:project/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SecurityLockDownActivation extends StatefulWidget {
@@ -49,12 +47,14 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
 
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.amberAccent,
       appBar: AppBar(
-          title: const Text('Lock Down ',
+          title: const Text('Check Home ',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
           backgroundColor: Colors.amber.shade400,
       ),
@@ -406,77 +406,6 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
 
 
 
-
-
-  // Future<void> _CheckNamePassword() async {
-  //
-  //
-  //   //String email= prefs.getString('email')!;
-  //
-  //   final url = Uri.parse(
-  //       'https://shomey-test-default-rtdb.firebaseio.com/users.json?orderBy="password"&equalTo="' + pass +'"');
-  //
-  //   await http.get(url).then((value) async{
-  //
-  //     List <LockDown> userListtt = [];
-  //
-  //     final extractedData = json.decode(value.body);
-  //     //loop
-  //     extractedData.forEach((key , value){
-  //       userListtt.add(LockDown(
-  //         id: key,
-  //         password: value['password'],
-  //
-  //       ));
-  //
-  //     });
-  //
-  //     if(userListtt[0].password==pass){
-  //
-  //       //shared pref low el user 3ando data wala la
-  //       final prefs = await SharedPreferences.getInstance();
-  //       final userData = json.encode({
-  //         'id': id,
-  //         'password': pass,
-  //
-  //       },);
-  //
-  //       prefs.setString('userData', userData);
-  //
-  //     }else{
-  //       // set up the button
-  //       Widget okButton = TextButton(
-  //         child: Text("OK"),
-  //         onPressed: () {
-  //           Navigator.of(context).pop();
-  //         },
-  //       );
-  //
-  //       // set up the AlertDialog
-  //       AlertDialog alert = AlertDialog(
-  //         title: Text("Wrong Password"),
-  //         content: Text("Wrong data "),
-  //         actions: [
-  //           okButton,
-  //         ],
-  //       );
-  //
-  //       // show the dialog
-  //       showDialog(
-  //         context: context,
-  //         builder: (BuildContext context) {
-  //           return alert;
-  //         },
-  //       );
-  //     }
-  //
-  //     setState(() {
-  //       confermUser= userListtt ;
-  //     });
-  //
-  //   });
-  // }
-
   void getStatusDoors() async {
     print("socket from inside is: " + doorID.toString());
 
@@ -722,36 +651,3 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
   }
 
 }
-
-
-
-// Padding(
-//     padding: EdgeInsets.only(top: 20, bottom: 20),
-//     child: TextField(
-//         decoration: InputDecoration(
-//             labelText: 'Enter your Password',
-//             icon: Icon(Icons.lock)),
-//         style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)
-//     )
-// ),
-//
-//
-// Container(
-//     width: double.infinity,
-//     margin: const EdgeInsets.only(bottom: 10),
-//     child: ElevatedButton(
-//         child: const Padding(
-//             padding: EdgeInsets.all(15),
-//             child: Text('Confirm')),
-//         style: ElevatedButton.styleFrom(
-//           primary: Colors.amber.shade400,
-//         ),
-//         onPressed: ()
-//           async {
-//             _CheckNamePassword();
-//
-//           }
-//
-//
-//     )
-// ),

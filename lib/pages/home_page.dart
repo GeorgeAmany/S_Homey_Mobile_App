@@ -1,5 +1,6 @@
 ///page 1
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -21,6 +22,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../routes/new_car.dart';
 
+import 'dart:io' as io;
+
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -40,16 +44,24 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _CheckLogin();
     //_alert();
+    garage();
+    //detect
   }
 
   bool wal3 = false;
+
+
+  bool selectedHome = false;
+
+  bool notify = false;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black54,
         appBar: AppBar(
-            title: const Text('SHomey',
+            title: const Text('S.Homey',
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
             backgroundColor: Colors.black54
         ),
@@ -62,226 +74,383 @@ class _HomePageState extends State<HomePage> {
                   .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
             ),
             child: drawer()),
-        body: RefreshIndicator(
-            child: Card(
-              margin: const EdgeInsets.all(10.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child:ListView(
-                scrollDirection: Axis.vertical,
-                children: [
-                  DropdownButton<String>(
-                    //branch
-                    value: dropdownHomeValue,
-                    icon: const Icon(
-                      Icons.arrow_downward,
-                      size: 30,
-                      color: Colors.black,
+        body: Stack(
+          children: [
+
+            RefreshIndicator(
+                child: Card(
+                  margin: const EdgeInsets.all(10.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child:ListView(
+                    scrollDirection: Axis.vertical,
+                    children: !selectedHome ? [
+                      DropdownButton<String>(
+                      //branch
+                      value: dropdownHomeValue,
+                      icon: const Icon(
+                        Icons.arrow_downward,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      elevation: 16,
+                      style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.black45,
+                      ),
+
+                      ///--------------------selected home-----------------------------------------
+                      onChanged: (newValue) {
+                        setState(() async {
+
+                          final prefs = await SharedPreferences.getInstance();
+
+
+                          prefs.setString('selectedHome', Homes[Homes.indexWhere((f) => f.homeName == newValue)].ID);
+
+                          garage();
+
+                          setState((){
+                            dropdownHomeValue = newValue!;
+                          });
+
+
+                          if(newValue != "select a home"){
+
+                            setState((){
+                              selectedHome = true;
+                              dropdownHomeValue = newValue!;
+                            });
+
+                          }
+
+                        });
+                      },
+
+                      ///----------------------------------------------------------------
+
+                      items: Homes.map((value) {
+                        return DropdownMenuItem<String>(
+                          value: value.homeName,
+                          child: Text(value.homeName),
+                        );
+                      }).toList(),
                     ),
-                    elevation: 16,
-                    style: TextStyle(
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
-                    underline: Container(
-                      height: 2,
-                      color: Colors.black45,
-                    ),
-
-                    ///--------------------selected home-----------------------------------------
-                    onChanged: (newValue) {
-                      setState(() async {
-
-                        final prefs = await SharedPreferences.getInstance();
-
-
-                        prefs.setString('selectedHome', Homes[Homes.indexWhere((f) => f.homeName == newValue)].ID);
-
-
-                        dropdownHomeValue = newValue!;
-
-
-                      });
-                    },
-
-                    ///----------------------------------------------------------------
-
-                    items: Homes.map((value) {
-                      return DropdownMenuItem<String>(
-                        value: value.homeName,
-                        child: Text(value.homeName),
-                      );
-                    }).toList(),
-                  ),
-
-
-
-                  ListTile(
-                    leading: Icon(Icons.devices, size: 50.0),
-                    title: Text('Devices',
+                    ]
+                        :[
+                      DropdownButton<String>(
+                        //branch
+                        value: dropdownHomeValue,
+                        icon: const Icon(
+                          Icons.arrow_downward,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        elevation: 16,
                         style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () async {
-                      final prefs = await SharedPreferences.getInstance();
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.black45,
+                        ),
 
-                      prefs.setString('checkDoors', '1');
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) => Rooms()));
+                        ///--------------------selected home-----------------------------------------
+                        onChanged: (newValue) {
+                          setState(() async {
 
-                      setState(() {
-                        showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Container(
-                                  child:
-                                  Center(child: CircularProgressIndicator()));
-                            });
-                      });
-                    },
+                            final prefs = await SharedPreferences.getInstance();
+
+
+                            prefs.setString('selectedHome', Homes[Homes.indexWhere((f) => f.homeName == newValue)].ID);
+
+
+                            dropdownHomeValue = newValue!;
+
+                            garage();
+
+                          });
+                        },
+
+                        ///----------------------------------------------------------------
+
+                        items: Homes.map((value) {
+                          return DropdownMenuItem<String>(
+                            value: value.homeName,
+                            child: Text(value.homeName),
+                          );
+                        }).toList(),
+                      ),
+
+
+
+                      ListTile(
+                        leading: Icon(Icons.devices, size: 50.0),
+                        title: Text('Devices',
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.w600)),
+                        onTap: () async {
+                          final prefs = await SharedPreferences.getInstance();
+
+                          prefs.setString('checkDoors', '1');
+
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) => Rooms()));
+
+                          setState(() {
+                            showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                      child:
+                                      Center(child: CircularProgressIndicator()));
+                                });
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.kitchen, size: 50.0),
+                        title: Text('kitchens',
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.w600)),
+                        onTap: () async {
+                          final prefs = await SharedPreferences.getInstance();
+
+                          prefs.setString('checkDoors', '0');
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Kitchen()));
+
+                          setState(() {
+                            showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                      child:
+                                      Center(child: CircularProgressIndicator()));
+                                });
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.bathroom, size: 50.0),
+                        title: Text('Bathrooms',
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.w600)),
+                        onTap: () async {
+                          final prefs = await SharedPreferences.getInstance();
+
+                          prefs.setString('checkDoors', '1');
+
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Bathrooms()));
+
+                          setState(() {
+                            showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                      child:
+                                      Center(child: CircularProgressIndicator()));
+                                });
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Icons.security,
+                          size: 50.0,
+                        ),
+                        title: Text('Security',
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.w600)),
+                        onTap: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Security()));
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.home_filled, size: 50.0),
+                        title: Text('Garden',
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.w600)),
+                        onTap: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Garden()));
+
+                          setState(() {
+                            showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                      child:
+                                      Center(child: CircularProgressIndicator()));
+                                });
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.garage, size: 50.0),
+                        title: Text('Garage',
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.w600)),
+                        onTap: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Garage()));
+                          setState(() {
+                            showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                      child:
+                                      Center(child: CircularProgressIndicator()));
+                                });
+                          });
+                        },
+                      ),
+
+                      //add car
+                      ListTile(
+                        leading: Icon(Icons.garage, size: 50.0),
+                        title: Text('Add new Car',
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.w600)),
+                        onTap: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) => addNewCars()));
+                        },
+                      ),
+
+
+
+
+
+
+                      ListTile(
+                        leading: Icon(Icons.language, size: 50.0),
+                        title: Text('Website',
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.w600)),
+                        onTap: () {
+                          _launchURLBrowser();
+                        },
+                      ),
+
+
+                    ],
                   ),
-                  ListTile(
-                    leading: Icon(Icons.kitchen, size: 50.0),
-                    title: Text('kitchens',
-                        style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () async {
-                      final prefs = await SharedPreferences.getInstance();
+                ),
+                onRefresh: () => _CheckLogin()),
 
-                      prefs.setString('checkDoors', '0');
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Kitchen()));
+            notify
+                ? SizedBox(
+                     width: MediaQuery.of(context).size.width - 10,
+                    height: 300,
+                    child: Container(
+                       color: Colors.red,
+                      child: Column(
+                        children: [
 
-                      setState(() {
-                        showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Container(
-                                  child:
-                                  Center(child: CircularProgressIndicator()));
-                            });
-                      });
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.bathroom, size: 50.0),
-                    title: Text('Bathrooms',
-                        style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () async {
-                      final prefs = await SharedPreferences.getInstance();
+                          Row(
+                            children: [
+                              IconButton(
+                              onPressed: () async{
 
-                      prefs.setString('checkDoors', '1');
+                                setState((){
+                                  notify = false;
+                                });
 
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Bathrooms()));
-
-                      setState(() {
-                        showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Container(
-                                  child:
-                                  Center(child: CircularProgressIndicator()));
-                            });
-                      });
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.security,
-                      size: 50.0,
-                    ),
-                    title: Text('Security',
-                        style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Security()));
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.home_filled, size: 50.0),
-                    title: Text('Garden',
-                        style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Garden()));
-
-                      setState(() {
-                        showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Container(
-                                  child:
-                                  Center(child: CircularProgressIndicator()));
-                            });
-                      });
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.garage, size: 50.0),
-                    title: Text('Garage',
-                        style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Garage()));
-                      setState(() {
-                        showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Container(
-                                  child:
-                                  Center(child: CircularProgressIndicator()));
-                            });
-                      });
-                    },
-                  ),
-
-                  //add car
-                  ListTile(
-                    leading: Icon(Icons.garage, size: 50.0),
-                    title: Text('Add new Car',
-                        style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) => addNewCars()));
-                    },
-                  ),
-
-                  ListTile(
-                    leading: Icon(Icons.mood_sharp, size: 50.0),
-                    title: Text('Moods',
-                        style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) => Moods()));
-                    },
-                  ),
+                              },
+                        icon: const Icon(
+                        Icons.close,
+                        color: Colors.black,
+                        size: 50,
+                        )),
+                            ],
+                            mainAxisAlignment: MainAxisAlignment.end,
+                          ),
 
 
-                  ListTile(
-                    leading: Icon(Icons.language, size: 50.0),
-                    title: Text('Website',
-                        style: TextStyle(
-                            fontSize: 22.0, fontWeight: FontWeight.w600)),
-                    onTap: () {
-                      _launchURLBrowser();
-                    },
-                  ),
-                ],
-              ),
-            ),
-            onRefresh: () => _CheckLogin()));
+                          SizedBox(
+                            width: 200,
+                              height: 200,
+                              child: Image.memory(bytes)
+                          ),
+
+                          Row(
+                            children: [
+
+                              ElevatedButton(
+                                  child:  Padding(
+                                      padding: EdgeInsets.all(15),
+                                      child: Text("Open Door",
+                                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.pink.shade400,
+                                  ),
+                                  onPressed: () async {
+
+                                    final url = Uri.parse(
+                                        'https://shomey-test-default-rtdb.firebaseio.com/garage/-N5wRpyOt2REV7xvImHo.json');
+
+
+                                    await http
+                                        .patch(
+                                      url,
+                                      body: json.encode({
+                                        'value': 1,
+                                      }),
+                                    ).then((value) {
+                                      setState((){
+                                        notify = false;
+                                      });
+                                    });
+
+                                  }
+                              ),
+                              ElevatedButton(
+                                  child:  Padding(
+                                      padding: EdgeInsets.all(15),
+                                      child: Text("cancel",
+                                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.pink.shade400,
+                                  ),
+                                  onPressed: () async {
+
+
+                                    setState((){
+                                      notify = false;
+                                    });
+
+
+                                  }
+                              )
+
+                            ],
+                          ),
+
+                        ],
+                      ),
+                       ),
+            )
+                : Container(),
+
+
+          ],
+        ));
   }
 
   _launchURLBrowser() async {
@@ -298,7 +467,7 @@ class _HomePageState extends State<HomePage> {
 
     if (prefs.containsKey('userData')) {
       getHomes();
-      _alert();
+     // _alert();
     } else {
       Navigator.of(context).pop();
       Navigator.of(context)
@@ -306,6 +475,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  //fire goes here
   void _alert() async {
     print("socket from inside is:");
 
@@ -327,6 +497,73 @@ class _HomePageState extends State<HomePage> {
     //  print("newValue: "+ newValue.toString());
   }
 
+  void garage() async {
+    print("socket from inside is:");
+
+
+
+
+      await FirebaseDatabase.instance
+          .reference()
+          .child('garage/-N5wRpyOt2REV7xvImHo/image')
+          .onValue
+          .listen((event) {
+        event.snapshot.value != ""
+            ? startNotify()
+             : null;
+        print("is switched from inside is: ");
+
+        setState(() {});
+      });
+      //print(isSwitched);
+      //  print("newValue: "+ newValue.toString());
+
+
+
+  }
+
+ // var file = io.File("decodedBezkoder.png");
+
+  late Uint8List bytes;
+
+  void startNotify() async{
+
+    final prefs = await SharedPreferences.getInstance();
+
+
+    if(prefs.getString('selectedHome') == "-N5WgIJwaDyQHbciv74D"){
+
+
+
+        final url = Uri.parse(
+            'https://shomey-test-default-rtdb.firebaseio.com/garage/-N5wRpyOt2REV7xvImHo/image.json');
+
+
+        await http.get(url).then((value) async {
+
+          print(value.body);
+
+
+
+
+          setState((){
+
+            bytes = base64Decode(jsonDecode(value.body));
+
+           // file.writeAsBytesSync(base64Decode(jsonDecode(value.body)));
+
+            notify = true;
+          });
+
+
+        });
+
+
+      }
+
+
+  }
+
   void wal3ana() {
     showDialog(
         context: context,
@@ -338,6 +575,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   void getHomes() async {
+
+
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder:
+            (BuildContext context) {
+          return Container(
+              child: Center(
+                  child:
+                  CircularProgressIndicator()));
+        });
+
+
+
     Homes = [];
 
     Homes.add(Home(
@@ -408,6 +660,10 @@ class _HomePageState extends State<HomePage> {
             });
           }
         }
+
+
+        Navigator.of(context).pop();
+
 
         setState(() {
           Homes += loadDataa;

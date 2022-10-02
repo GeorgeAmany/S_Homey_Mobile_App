@@ -30,11 +30,11 @@ class _RoomsState extends State<Rooms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.pink.shade400,
+        backgroundColor: Colors.blue.shade400,
         appBar: AppBar(
             title: const Text('Rooms',
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
-            backgroundColor: Colors.pink.shade400
+            backgroundColor: Colors.blue.shade400
         ),
 
         body: RefreshIndicator(
@@ -57,7 +57,7 @@ class _RoomsState extends State<Rooms> {
                                       style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                               ),
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.pink.shade400,
+                                primary: Colors.blue.shade400,
                               ),
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();

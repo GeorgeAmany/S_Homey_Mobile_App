@@ -46,11 +46,11 @@ class _GardenState extends State<Garden> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor:Colors.pink.shade400,
+        backgroundColor:Colors.blue.shade400,
       appBar: AppBar(
           title: const Text('Garden',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
-          backgroundColor: Colors.pink.shade400
+          backgroundColor: Colors.blue.shade400
       ),
 
         body: Padding(
@@ -187,6 +187,9 @@ class _GardenState extends State<Garden> {
 
                   final extractedDataa = json.decode(valuee.body);
 
+                  print("garden: " + valuee.body);
+
+
                   extractedDataa?.forEach((Key, value) {
                     setState(() {
                        NameD = value['Name'];
@@ -257,8 +260,8 @@ class _GardenState extends State<Garden> {
       }),
     )
         .then((value) {
+      Navigator.of(context).pop();
 
-      _getGarden();
     });
   }
 

@@ -16,11 +16,11 @@ class _SecurityState extends State<Security> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.pink.shade400,
+        backgroundColor: Colors.blue.shade400,
       appBar: AppBar(
           title: Text('Security',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
-          backgroundColor: Colors.pink.shade400
+          backgroundColor: Colors.blue.shade400
       ),
 
         body: Padding(
@@ -50,7 +50,7 @@ class _SecurityState extends State<Security> {
                                                   fontWeight: FontWeight.w600))
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.pink.shade400,
+                                        primary: Colors.blue.shade400,
                                       ),
                                       onPressed: (){
                                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SecurityCameraActivation()));
@@ -61,30 +61,6 @@ class _SecurityState extends State<Security> {
                           ),
 
 
-                          SizedBox(
-                              height: 60, // fixed height
-                              child: ListView.builder(
-                                itemCount: 1 ,
-                                itemBuilder: (context, index) {
-                                  return ElevatedButton(
-                                      child: Padding(
-                                          padding: EdgeInsets.all(15),
-                                          child: Text('Gates',
-                                              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.pink.shade400,
-
-                                      ),
-                                      onPressed: (){
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SecurityGatesActivation()));
-                                      }
-                                  );
-
-                                },
-                              )
-                          ),
-
 
                           SizedBox(
                               height: 60, // fixed height
@@ -94,11 +70,11 @@ class _SecurityState extends State<Security> {
                                   return ElevatedButton(
                                       child: Padding(
                                           padding: EdgeInsets.all(15),
-                                          child: Text('Lock Down',
+                                          child: Text('Check Home',
                                               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.pink.shade400,
+                                        primary: Colors.blue.shade400,
                                       ),
                                       onPressed: () async {
 
@@ -135,7 +111,7 @@ class _SecurityState extends State<Security> {
                                               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.pink.shade400,
+                                        primary: Colors.blue.shade400,
                                       ),
                                       onPressed: (){
                                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SecurityCallHelpActivation()));

@@ -154,28 +154,55 @@ class _LoginPageState extends State<LoginPage> {
 
       await http.get(url).then((value) async{
 
-        List <User> userListtt = [];
+        if(value.body == "{}"){
+          // set up the button
+          Widget okButton = TextButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          );
 
-        final extractedData = json.decode(value.body);
-        //loop
-        extractedData.forEach((key , value){
-          userListtt.add(User(
-            name: value['name'],
-            id: key,
-            email: value['email'],
-            number: value['number'],
-            password: value['password'],
+          // set up the AlertDialog
+          AlertDialog alert = AlertDialog(
+            title: Text("Wrong Email"),
+            content: Text("Wrong data "),
+            actions: [
+              okButton,
+            ],
+          );
 
-          ));
+          // show the dialog
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return alert;
+            },
+          );
+        }else{
 
-          id = key;
-          //pass = value['password'];
-          //email = value['email'];
-          //name = value['name'];
-          //number = value['number'];
+          List <User> userListtt = [];
 
-          print("id from login: " + key);
-        });
+          final extractedData = json.decode(value.body);
+          //loop
+          extractedData.forEach((key , value){
+            userListtt.add(User(
+              name: value['name'],
+              id: key,
+              email: value['email'],
+              number: value['number'],
+              password: value['password'],
+
+            ));
+
+            id = key;
+            //pass = value['password'];
+            //email = value['email'];
+            //name = value['name'];
+            //number = value['number'];
+
+            print("id from login: " + key);
+          });
 
           if (userListtt[0].password == pass) {
 
@@ -205,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
 
             // set up the AlertDialog
             AlertDialog alert = AlertDialog(
-              title: Text("Wrong Email"),
+              title: Text("Wrong Password"),
               content: Text("Wrong data "),
               actions: [
                 okButton,
@@ -224,6 +251,9 @@ class _LoginPageState extends State<LoginPage> {
           setState(() {
             user = userListtt;
           });
+
+
+        }
 
       });
     }

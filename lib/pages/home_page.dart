@@ -14,7 +14,6 @@ import 'package:project/routes/bathrooms.dart';
 import 'package:project/routes/garage.dart';
 import 'package:project/routes/garden.dart';
 import 'package:project/routes/kitchen.dart';
-import 'package:project/routes/moods.dart';
 import 'package:project/routes/rooms.dart';
 import 'package:project/routes/security.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,7 +21,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../routes/new_car.dart';
 
-import 'dart:io' as io;
 
 
 class HomePage extends StatefulWidget {
@@ -73,7 +71,7 @@ class _HomePageState extends State<HomePage> {
               canvasColor: Colors
                   .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
             ),
-            child: drawer()),
+            child: const drawer()),
         body: Stack(
           children: [
 
@@ -95,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black,
                       ),
                       elevation: 16,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 22.0,
                           fontWeight: FontWeight.w600,
                           color: Colors.black),
@@ -152,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black,
                         ),
                         elevation: 16,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 22.0,
                             fontWeight: FontWeight.w600,
                             color: Colors.black),
@@ -191,8 +189,8 @@ class _HomePageState extends State<HomePage> {
 
 
                       ListTile(
-                        leading: Icon(Icons.devices, size: 50.0),
-                        title: Text('Devices',
+                        leading: const Icon(Icons.devices, size: 50.0),
+                        title: const Text('Devices',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600)),
                         onTap: () async {
@@ -201,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                           prefs.setString('checkDoors', '1');
 
                           Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => Rooms()));
+                              .push(MaterialPageRoute(builder: (context) => const Rooms()));
 
                           setState(() {
                             showDialog(
@@ -210,14 +208,14 @@ class _HomePageState extends State<HomePage> {
                                 builder: (BuildContext context) {
                                   return Container(
                                       child:
-                                      Center(child: CircularProgressIndicator()));
+                                      const Center(child: CircularProgressIndicator()));
                                 });
                           });
                         },
                       ),
                       ListTile(
-                        leading: Icon(Icons.kitchen, size: 50.0),
-                        title: Text('kitchens',
+                        leading: const Icon(Icons.kitchen, size: 50.0),
+                        title: const Text('kitchens',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600)),
                         onTap: () async {
@@ -225,7 +223,7 @@ class _HomePageState extends State<HomePage> {
 
                           prefs.setString('checkDoors', '0');
                           Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Kitchen()));
+                              MaterialPageRoute(builder: (context) => const Kitchen()));
 
                           setState(() {
                             showDialog(
@@ -234,14 +232,14 @@ class _HomePageState extends State<HomePage> {
                                 builder: (BuildContext context) {
                                   return Container(
                                       child:
-                                      Center(child: CircularProgressIndicator()));
+                                      const Center(child: CircularProgressIndicator()));
                                 });
                           });
                         },
                       ),
                       ListTile(
-                        leading: Icon(Icons.bathroom, size: 50.0),
-                        title: Text('Bathrooms',
+                        leading: const Icon(Icons.bathroom, size: 50.0),
+                        title: const Text('Bathrooms',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600)),
                         onTap: () async {
@@ -250,7 +248,7 @@ class _HomePageState extends State<HomePage> {
                           prefs.setString('checkDoors', '1');
 
                           Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Bathrooms()));
+                              MaterialPageRoute(builder: (context) => const Bathrooms()));
 
                           setState(() {
                             showDialog(
@@ -259,32 +257,32 @@ class _HomePageState extends State<HomePage> {
                                 builder: (BuildContext context) {
                                   return Container(
                                       child:
-                                      Center(child: CircularProgressIndicator()));
+                                      const Center(child: CircularProgressIndicator()));
                                 });
                           });
                         },
                       ),
                       ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.security,
                           size: 50.0,
                         ),
-                        title: Text('Security',
+                        title: const Text('Security',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600)),
                         onTap: () {
                           Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Security()));
+                              MaterialPageRoute(builder: (context) => const Security()));
                         },
                       ),
                       ListTile(
-                        leading: Icon(Icons.home_filled, size: 50.0),
-                        title: Text('Garden',
+                        leading: const Icon(Icons.home_filled, size: 50.0),
+                        title: const Text('Garden',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600)),
                         onTap: () {
                           Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Garden()));
+                              MaterialPageRoute(builder: (context) => const Garden()));
 
                           setState(() {
                             showDialog(
@@ -293,19 +291,19 @@ class _HomePageState extends State<HomePage> {
                                 builder: (BuildContext context) {
                                   return Container(
                                       child:
-                                      Center(child: CircularProgressIndicator()));
+                                      const Center(child: CircularProgressIndicator()));
                                 });
                           });
                         },
                       ),
                       ListTile(
-                        leading: Icon(Icons.garage, size: 50.0),
-                        title: Text('Garage',
+                        leading: const Icon(Icons.garage, size: 50.0),
+                        title: const Text('Garage',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600)),
                         onTap: () {
                           Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Garage()));
+                              MaterialPageRoute(builder: (context) => const Garage()));
                           setState(() {
                             showDialog(
                                 barrierDismissible: false,
@@ -313,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                                 builder: (BuildContext context) {
                                   return Container(
                                       child:
-                                      Center(child: CircularProgressIndicator()));
+                                      const Center(child: CircularProgressIndicator()));
                                 });
                           });
                         },
@@ -321,13 +319,13 @@ class _HomePageState extends State<HomePage> {
 
                       //add car
                       ListTile(
-                        leading: Icon(Icons.garage, size: 50.0),
-                        title: Text('Add new Car',
+                        leading: const Icon(Icons.garage, size: 50.0),
+                        title: const Text('Add new Car',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600)),
                         onTap: () {
                           Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => addNewCars()));
+                              .push(MaterialPageRoute(builder: (context) => const addNewCars()));
                         },
                       ),
 
@@ -337,8 +335,8 @@ class _HomePageState extends State<HomePage> {
 
 
                       ListTile(
-                        leading: Icon(Icons.language, size: 50.0),
-                        title: Text('Website',
+                        leading: const Icon(Icons.language, size: 50.0),
+                        title: const Text('Website',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600)),
                         onTap: () {
@@ -391,13 +389,13 @@ class _HomePageState extends State<HomePage> {
                             children: [
 
                               ElevatedButton(
-                                  child:  Padding(
+                                  child:  const Padding(
                                       padding: EdgeInsets.all(15),
                                       child: Text("Open Door",
                                           style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                                   ),
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.pink.shade400,
+                                    backgroundColor: Colors.pink.shade400,
                                   ),
                                   onPressed: () async {
 
@@ -420,13 +418,13 @@ class _HomePageState extends State<HomePage> {
                                   }
                               ),
                               ElevatedButton(
-                                  child:  Padding(
+                                  child:  const Padding(
                                       padding: EdgeInsets.all(15),
                                       child: Text("cancel",
                                           style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                                   ),
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.pink.shade400,
+                                    backgroundColor: Colors.pink.shade400,
                                   ),
                                   onPressed: () async {
 
@@ -471,7 +469,7 @@ class _HomePageState extends State<HomePage> {
     } else {
       Navigator.of(context).pop();
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => LoginPage()));
+          .push(MaterialPageRoute(builder: (context) => const LoginPage()));
     }
   }
 
@@ -479,7 +477,7 @@ class _HomePageState extends State<HomePage> {
   void _alert() async {
     print("socket from inside is:");
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('alert/value')
         .onValue
@@ -503,7 +501,7 @@ class _HomePageState extends State<HomePage> {
 
 
 
-      await FirebaseDatabase.instance
+      FirebaseDatabase.instance
           .reference()
           .child('garage/-N5wRpyOt2REV7xvImHo/image')
           .onValue
@@ -568,7 +566,7 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return Container(child: Center(child: Text('Fire Fire')));
+          return Container(child: const Center(child: Text('Fire Fire')));
         });
 
     wal3 = true;
@@ -583,7 +581,7 @@ class _HomePageState extends State<HomePage> {
         builder:
             (BuildContext context) {
           return Container(
-              child: Center(
+              child: const Center(
                   child:
                   CircularProgressIndicator()));
         });
@@ -671,7 +669,7 @@ class _HomePageState extends State<HomePage> {
         });
       });
     } catch (error) {
-      throw (error);
+      rethrow;
     }
   }
 }

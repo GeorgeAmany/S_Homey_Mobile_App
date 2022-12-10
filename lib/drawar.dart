@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:project/activate_routes/lock_down_activaction.dart';
 import 'package:project/pages/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,7 +67,7 @@ class _drawerState extends State<drawer> {
   }
   Widget cardB(text, fun){
     return Card(
-      color: Color(0x71006FFF),
+      color: const Color(0x71006FFF),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -102,20 +101,20 @@ class _drawerState extends State<drawer> {
             ],
           ),
           ElevatedButton(
-              child: SizedBox(
+              child: const SizedBox(
                   child: Text('Devices',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue.shade400,
+                  backgroundColor: Colors.blue.shade400,
                   side: BorderSide(width:3, color:Colors.blue.shade400),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
                   ),
-                  padding: EdgeInsets.all(15)
+                  padding: const EdgeInsets.all(15)
               ),
               onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Rooms()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Rooms()));
                   setState(() {
                     showDialog(
                         barrierDismissible: false,
@@ -123,7 +122,7 @@ class _drawerState extends State<drawer> {
                         builder:
                             (BuildContext context) {
                           return Container(
-                              child: Center(
+                              child: const Center(
                                   child:
                                   CircularProgressIndicator()));
                         });
@@ -133,20 +132,20 @@ class _drawerState extends State<drawer> {
           ),
 
           ElevatedButton(
-              child: SizedBox(
+              child: const SizedBox(
                   child: Text('kitchens',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue.shade400,
+                  backgroundColor: Colors.blue.shade400,
                   side: BorderSide(width:3, color:Colors.blue.shade400),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
                   ),
-                  padding: EdgeInsets.all(12)
+                  padding: const EdgeInsets.all(12)
               ),
               onPressed: ()  {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Kitchen()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Kitchen()));
                   setState(() {
                     showDialog(
                         barrierDismissible: false,
@@ -154,7 +153,7 @@ class _drawerState extends State<drawer> {
                         builder:
                             (BuildContext context) {
                           return Container(
-                              child: Center(
+                              child: const Center(
                                   child:
                                   CircularProgressIndicator()));
                         });
@@ -164,20 +163,20 @@ class _drawerState extends State<drawer> {
           ),
 
           ElevatedButton(
-              child: SizedBox(
+              child: const SizedBox(
                   child: Text('Bathrooms',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue.shade400,
+                  backgroundColor: Colors.blue.shade400,
                   side: BorderSide(width:3, color:Colors.blue.shade400),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
                   ),
-                  padding: EdgeInsets.all(12)
+                  padding: const EdgeInsets.all(12)
               ),
               onPressed: ()  {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Bathrooms()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Bathrooms()));
                   setState(() {
                     showDialog(
                         barrierDismissible: false,
@@ -185,7 +184,7 @@ class _drawerState extends State<drawer> {
                         builder:
                             (BuildContext context) {
                           return Container(
-                              child: Center(
+                              child: const Center(
                                   child:
                                   CircularProgressIndicator()));
                         });
@@ -195,20 +194,20 @@ class _drawerState extends State<drawer> {
           ),
 
           ElevatedButton(
-              child: SizedBox(
+              child: const SizedBox(
                   child: Text('Check Home',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.amberAccent,
-                  side: BorderSide(width:3, color:Colors.blue),
+                  backgroundColor: Colors.amberAccent,
+                  side: const BorderSide(width:3, color:Colors.blue),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
                   ),
-                  padding: EdgeInsets.all(10)
+                  padding: const EdgeInsets.all(10)
               ),
               onPressed: ()  {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SecurityLockDownActivation()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SecurityLockDownActivation()));
                   setState(() {
                     showDialog(
                         barrierDismissible: false,
@@ -216,7 +215,7 @@ class _drawerState extends State<drawer> {
                         builder:
                             (BuildContext context) {
                           return Container(
-                              child: Center(
+                              child: const Center(
                                   child:
                                   CircularProgressIndicator()));
                         });
@@ -226,20 +225,20 @@ class _drawerState extends State<drawer> {
           ),
 
           ElevatedButton(
-              child: SizedBox(
+              child: const SizedBox(
                   child: Text('Garage',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue.shade400,
+                  backgroundColor: Colors.blue.shade400,
                   side: BorderSide(width:3, color:Colors.blue.shade400),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
                   ),
-                  padding: EdgeInsets.all(12)
+                  padding: const EdgeInsets.all(12)
               ),
               onPressed: ()  {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Garage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Garage()));
                   setState(() {
                     showDialog(
                         barrierDismissible: false,
@@ -247,7 +246,7 @@ class _drawerState extends State<drawer> {
                         builder:
                             (BuildContext context) {
                           return Container(
-                              child: Center(
+                              child: const Center(
                                   child:
                                   CircularProgressIndicator()));
                         });
@@ -258,17 +257,17 @@ class _drawerState extends State<drawer> {
 
 
           ElevatedButton(
-              child: SizedBox(
+              child: const SizedBox(
                   child: Text('Logout',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600))),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  side: BorderSide(width:3, color:Colors.blue),
+                  backgroundColor: Colors.blue,
+                  side: const BorderSide(width:3, color:Colors.blue),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
                   ),
-                  padding: EdgeInsets.all(10)
+                  padding: const EdgeInsets.all(10)
               ),
               onPressed: () async{
                   SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -276,7 +275,7 @@ class _drawerState extends State<drawer> {
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
 
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginPage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const LoginPage()));
                   });
                 }
 

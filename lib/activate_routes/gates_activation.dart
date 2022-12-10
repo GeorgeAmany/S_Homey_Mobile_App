@@ -41,7 +41,7 @@ class _SecurityGatesActivationState extends State<SecurityGatesActivation> {
                           itemCount: 1 ,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              title: Text('Gate',
+                              title: const Text('Gate',
                                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
                               trailing: Switch(
                                 value: isSwitched,

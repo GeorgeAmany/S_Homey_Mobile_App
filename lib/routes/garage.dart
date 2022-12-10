@@ -3,9 +3,7 @@ import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:project/models/Sockets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video_player/video_player.dart';
 
 import 'package:http/http.dart'as http;
 
@@ -92,7 +90,7 @@ class _GarageState extends State<Garage> {
                           itemCount: 1 ,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              title: Text('Door',
+                              title: const Text('Door',
                                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
                               trailing: Switch(
                                 value: doorValue == 1? true : false,
@@ -104,7 +102,7 @@ class _GarageState extends State<Garage> {
                                       builder: (BuildContext context) {
                                         return Container(
                                             child:
-                                            Center(child: CircularProgressIndicator()));
+                                            const Center(child: CircularProgressIndicator()));
                                       });
 
 
@@ -278,7 +276,7 @@ class _GarageState extends State<Garage> {
 
 
     } catch (error) {
-      throw (error);
+      rethrow;
     }
 
   }
@@ -347,7 +345,7 @@ class _GarageState extends State<Garage> {
   void getStatusDoors() async {
     print("socket from inside is: " + doorID.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + doorID + '/value')
         .onValue
@@ -368,7 +366,7 @@ class _GarageState extends State<Garage> {
   void getStatusLights() async {
     print("socket from inside is: " + lampid.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + lampid + '/value')
         .onValue
@@ -387,7 +385,7 @@ class _GarageState extends State<Garage> {
 
 
   Future<void> turnOn(String IDD , int valuee) async {
-    print('$IDD');
+    print(IDD);
 
     final url = Uri.parse(
         'https://shomey-test-default-rtdb.firebaseio.com/Devices/$IDD.json');

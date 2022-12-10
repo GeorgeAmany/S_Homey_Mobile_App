@@ -197,7 +197,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
                           children: [
 
                             //inside Container white
-                            Text('All Lights',
+                            const Text('All Lights',
                                 style: TextStyle(
                                     fontSize: 30.0, fontWeight: FontWeight.w600)),
 
@@ -219,8 +219,8 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                                 children: [
-                                                  Text('${lights[index].Name}',
-                                                    style: TextStyle(
+                                                  Text(lights[index].Name,
+                                                    style: const TextStyle(
                                                         fontSize: 20.0,
                                                         fontWeight: FontWeight.w600),
                                                     maxLines: 2,
@@ -233,7 +233,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
                                                           builder:
                                                               (BuildContext context) {
                                                             return Container(
-                                                                child: Center(
+                                                                child: const Center(
                                                                     child:
                                                                     CircularProgressIndicator()
                                                                 )
@@ -276,7 +276,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
                           children: [
 
                             //inside Container white
-                            Text('All Sockets',
+                            const Text('All Sockets',
                                 style: TextStyle(
                                     fontSize: 30.0, fontWeight: FontWeight.w600)),
 
@@ -298,8 +298,8 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                                 children: [
-                                                  Text('${sockets[index].Name}',
-                                                    style: TextStyle(
+                                                  Text(sockets[index].Name,
+                                                    style: const TextStyle(
                                                         fontSize: 20.0,
                                                         fontWeight: FontWeight.w600),
                                                     maxLines: 2,
@@ -314,7 +314,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
                                                           builder:
                                                               (BuildContext context) {
                                                             return Container(
-                                                                child: Center(
+                                                                child: const Center(
                                                                     child:
                                                                     CircularProgressIndicator()
                                                                 )
@@ -357,8 +357,8 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
                       mainAxisAlignment:
                       MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text('$doorName',
-                          style: TextStyle(
+                        Text(doorName,
+                          style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w600),
                           maxLines: 2,
@@ -371,7 +371,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
                                 builder:
                                     (BuildContext context) {
                                   return Container(
-                                      child: Center(
+                                      child: const Center(
                                           child:
                                           CircularProgressIndicator()
                                       )
@@ -409,7 +409,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
   void getStatusDoors() async {
     print("socket from inside is: " + doorID.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + doorID + '/value')
         .onValue
@@ -430,7 +430,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
   void getStatusDevices(int index) async {
     print("socket from inside is: " + devices[index].id.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + devices[index].id + '/value')
         .onValue
@@ -450,7 +450,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
   void getStatusLights(int index) async {
     print("socket from inside is: " + lights[index].id.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + lights[index].id + '/value')
         .onValue
@@ -470,7 +470,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
   void getStatusSockets(int index) async {
     print("socket from inside is: " + sockets[index].id.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + sockets[index].id + '/value')
         .onValue
@@ -614,7 +614,7 @@ class _SecurityLockDownActivationState extends State<SecurityLockDownActivation>
   }
 
   Future<void> turnOn(String id, int v) async {
-    print('$id');
+    print(id);
 
     final url = Uri.parse(
         'https://shomey-test-default-rtdb.firebaseio.com/Devices/$id.json');

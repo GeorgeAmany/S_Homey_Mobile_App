@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/activate_routes/call_help_activaction.dart';
 import 'package:project/activate_routes/camera_%20activation.dart';
-import 'package:project/activate_routes/gates_activation.dart';
 import 'package:project/activate_routes/lock_down_activaction.dart';
 
 class Security extends StatefulWidget {
@@ -18,17 +17,17 @@ class _SecurityState extends State<Security> {
     return Scaffold(
         backgroundColor: Colors.blue.shade400,
       appBar: AppBar(
-          title: Text('Security',
+          title: const Text('Security',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
           backgroundColor: Colors.blue.shade400
       ),
 
         body: Padding(
-            padding:  EdgeInsets.all(10.0),
+            padding:  const EdgeInsets.all(10.0),
 
                   child: Card(
                     elevation: 10,
-                    margin: EdgeInsets.all(10.0),
+                    margin: const EdgeInsets.all(10.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -43,17 +42,17 @@ class _SecurityState extends State<Security> {
                                 itemBuilder: (context, index) {
                                   return ElevatedButton(
 
-                                      child: Padding(
+                                      child: const Padding(
                                           padding: EdgeInsets.all(15),
                                           child: Text('Camera',
                                               style: TextStyle(fontSize: 18.0,
                                                   fontWeight: FontWeight.w600))
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.blue.shade400,
+                                        backgroundColor: Colors.blue.shade400,
                                       ),
                                       onPressed: (){
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SecurityCameraActivation()));
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SecurityCameraActivation()));
                                       }
                                   );
                                 },
@@ -68,18 +67,18 @@ class _SecurityState extends State<Security> {
                                 itemCount: 1 ,
                                 itemBuilder: (context, index) {
                                   return ElevatedButton(
-                                      child: Padding(
+                                      child: const Padding(
                                           padding: EdgeInsets.all(15),
                                           child: Text('Check Home',
                                               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.blue.shade400,
+                                        backgroundColor: Colors.blue.shade400,
                                       ),
                                       onPressed: () async {
 
 
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SecurityLockDownActivation()));
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SecurityLockDownActivation()));
                                         setState(() {
                                           showDialog(
                                               barrierDismissible: false,
@@ -87,7 +86,7 @@ class _SecurityState extends State<Security> {
                                               builder:
                                                   (BuildContext context) {
                                                 return Container(
-                                                    child: Center(
+                                                    child: const Center(
                                                         child:
                                                         CircularProgressIndicator()));
                                               });
@@ -105,16 +104,16 @@ class _SecurityState extends State<Security> {
                                 itemCount: 1 ,
                                 itemBuilder: (context, index) {
                                   return ElevatedButton(
-                                      child:Padding(
+                                      child:const Padding(
                                           padding: EdgeInsets.all(15),
                                           child: Text('Call Help',
                                               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.blue.shade400,
+                                        backgroundColor: Colors.blue.shade400,
                                       ),
                                       onPressed: (){
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SecurityCallHelpActivation()));
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SecurityCallHelpActivation()));
                                       }
                                   );
                                 },

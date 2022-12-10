@@ -88,9 +88,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
 
                       Padding(
-                          padding: EdgeInsets.only(top: 20, bottom: 20),
+                          padding: const EdgeInsets.only(top: 20, bottom: 20),
                           child: TextField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 labelText: 'Enter your email',
                                 labelStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
                                 icon: Icon(Icons.email)),
@@ -100,9 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                           )
                       ),
                       Padding(
-                          padding: EdgeInsets.only(top: 20, bottom: 20),
+                          padding: const EdgeInsets.only(top: 20, bottom: 20),
                           child: TextField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 labelText: 'Enter your Password',
                                 labelStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
                                 icon: Icon(Icons.lock)),
@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
 
                           child: ElevatedButton(
-                              child: Padding(
+                              child: const Padding(
                                   padding: EdgeInsets.all(15),
                                   child: Text('Login',
                                   style: TextStyle(fontSize: 20.0,
@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
         if(value.body == "{}"){
           // set up the button
           Widget okButton = TextButton(
-            child: Text("OK"),
+            child: const Text("OK"),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -165,8 +165,8 @@ class _LoginPageState extends State<LoginPage> {
 
           // set up the AlertDialog
           AlertDialog alert = AlertDialog(
-            title: Text("Wrong Email"),
-            content: Text("Wrong data "),
+            title: const Text("Wrong Email"),
+            content: const Text("Wrong data "),
             actions: [
               okButton,
             ],
@@ -220,11 +220,11 @@ class _LoginPageState extends State<LoginPage> {
             prefs.setString('userData', userData);
             Navigator.of(context).pop();
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => HomePage()));
+                MaterialPageRoute(builder: (context) => const HomePage()));
           } else {
             // set up the button
             Widget okButton = TextButton(
-              child: Text("OK"),
+              child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -232,8 +232,8 @@ class _LoginPageState extends State<LoginPage> {
 
             // set up the AlertDialog
             AlertDialog alert = AlertDialog(
-              title: Text("Wrong Password"),
-              content: Text("Wrong data "),
+              title: const Text("Wrong Password"),
+              content: const Text("Wrong data "),
               actions: [
                 okButton,
               ],

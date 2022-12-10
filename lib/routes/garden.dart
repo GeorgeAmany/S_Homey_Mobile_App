@@ -70,7 +70,7 @@ class _GardenState extends State<Garden> {
                           itemCount: 1 ,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              title: Text('Garden Sprinkler',
+                              title: const Text('Garden Sprinkler',
                                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
                               trailing: Switch(
                                 value: valueD == 1? true : false,
@@ -82,7 +82,7 @@ class _GardenState extends State<Garden> {
                                       builder:
                                           (BuildContext context) {
                                         return Container(
-                                            child: Center(
+                                            child: const Center(
                                                 child:
                                                 CircularProgressIndicator()));
                                       });
@@ -200,7 +200,7 @@ class _GardenState extends State<Garden> {
                     });
                   });
 
-                  await FirebaseDatabase.instance
+                  FirebaseDatabase.instance
                       .reference()
                       .child('Devices/' + idD + '/value')
                       .onValue
@@ -241,13 +241,13 @@ class _GardenState extends State<Garden> {
 
 
     } catch (error) {
-      throw (error);
+      rethrow;
     }
 
   }
 
   Future<void> turnOn() async {
-    print('$idD');
+    print(idD);
 
     final url = Uri.parse(
         'https://shomey-test-default-rtdb.firebaseio.com/Devices/$idD.json');

@@ -49,22 +49,22 @@ class _RoomsState extends State<Rooms> {
                    child: ListView.builder(
                       itemCount: Room.length,
                       itemBuilder: (context, index) {
-                        return Padding(padding: EdgeInsets.all(7),
+                        return Padding(padding: const EdgeInsets.all(7),
                           child: ElevatedButton(
                               child:  Padding(
-                                  padding: EdgeInsets.all(15),
+                                  padding: const EdgeInsets.all(15),
                                   child: Text(Room[index].Name,
-                                      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
+                                      style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600))
                               ),
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.blue.shade400,
+                                backgroundColor: Colors.blue.shade400,
                               ),
                               onPressed: () async {
                                 final prefs = await SharedPreferences.getInstance();
                                 prefs.setString('clickedRoomID', Room[index].id);
                                 prefs.setString('clickedRoomName', Room[index].Name);
 
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RoomsActivation()));
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const RoomsActivation()));
                                 setState(() {
                                   showDialog(
                                       barrierDismissible: false,
@@ -72,7 +72,7 @@ class _RoomsState extends State<Rooms> {
                                       builder:
                                           (BuildContext context) {
                                         return Container(
-                                            child: Center(
+                                            child: const Center(
                                                 child:
                                                 CircularProgressIndicator()));
                                       });
@@ -188,7 +188,7 @@ class _RoomsState extends State<Rooms> {
 
 
     } catch (error) {
-      throw (error);
+      rethrow;
     }
 
 

@@ -57,7 +57,7 @@ class _SecurityCameraActivationState extends State<SecurityCameraActivation> {
             builder:
                 (BuildContext context) {
               return Container(
-                  child: Center(
+                  child: const Center(
                       child:
                       CircularProgressIndicator()));
             });
@@ -193,7 +193,7 @@ class _SecurityCameraActivationState extends State<SecurityCameraActivation> {
 
 
     } catch (error) {
-      throw (error);
+      rethrow;
     }
 
 

@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/models/Sockets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,8 +47,8 @@ class RoomsActivationState extends State<RoomsActivation> {
     return Scaffold(
         backgroundColor: Colors.amberAccent,
         appBar: AppBar(
-            title: Text('$title',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
+            title: Text(title,
+                style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
             backgroundColor: Colors.amber.shade400),
 
 
@@ -71,7 +70,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                     child: Column(
                       children: [
                         //inside Container white
-                        Text('Devices',
+                        const Text('Devices',
                             style: TextStyle(
                                 fontSize: 30.0, fontWeight: FontWeight.w600)),
                         SizedBox(
@@ -101,8 +100,8 @@ class RoomsActivationState extends State<RoomsActivation> {
                                             MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
-                                                '${devices[index].Name}',
-                                                style: TextStyle(
+                                                devices[index].Name,
+                                                style: const TextStyle(
                                                     fontSize: 20.0,
                                                     fontWeight: FontWeight.w600),
                                                 maxLines: 2,
@@ -116,7 +115,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                       builder:
                                                           (BuildContext context) {
                                                         return Container(
-                                                            child: Center(
+                                                            child: const Center(
                                                                 child:
                                                                 CircularProgressIndicator()));
                                                       });
@@ -141,7 +140,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                             )
 
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 25,
                         ),
                       ],
@@ -159,7 +158,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                             children: [
 
                               //inside Container white
-                              Text('Lights',
+                              const Text('Lights',
                                   style: TextStyle(
                                       fontSize: 30.0, fontWeight: FontWeight.w600)),
 
@@ -181,8 +180,8 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
                                                   children: [
-                                                    Text('${lights[index].Name}',
-                                                      style: TextStyle(
+                                                    Text(lights[index].Name,
+                                                      style: const TextStyle(
                                                           fontSize: 20.0,
                                                           fontWeight: FontWeight.w600),
                                                       maxLines: 2,
@@ -195,7 +194,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                             builder:
                                                                 (BuildContext context) {
                                                               return Container(
-                                                                  child: Center(
+                                                                  child: const Center(
                                                                       child:
                                                                       CircularProgressIndicator()
                                                                   )
@@ -238,7 +237,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                             children: [
 
                               //inside Container white
-                              Text('Sockets',
+                              const Text('Sockets',
                                   style: TextStyle(
                                       fontSize: 30.0, fontWeight: FontWeight.w600)),
 
@@ -260,8 +259,8 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
                                                   children: [
-                                                    Text('${sockets[index].Name}',
-                                                      style: TextStyle(
+                                                    Text(sockets[index].Name,
+                                                      style: const TextStyle(
                                                           fontSize: 20.0,
                                                           fontWeight: FontWeight.w600),
                                                       maxLines: 2,
@@ -276,7 +275,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                             builder:
                                                                 (BuildContext context) {
                                                               return Container(
-                                                                  child: Center(
+                                                                  child: const Center(
                                                                       child:
                                                                       CircularProgressIndicator()
                                                                   )
@@ -319,8 +318,8 @@ class RoomsActivationState extends State<RoomsActivation> {
                       mainAxisAlignment:
                       MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text('$doorName',
-                          style: TextStyle(
+                        Text(doorName,
+                          style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w600),
                           maxLines: 2,
@@ -333,7 +332,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                                 builder:
                                     (BuildContext context) {
                                   return Container(
-                                      child: Center(
+                                      child: const Center(
                                           child:
                                           CircularProgressIndicator()
                                       )
@@ -373,7 +372,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                       child: Column(
                         children: [
                           //inside Container white
-                          Text('Devices',
+                          const Text('Devices',
                               style: TextStyle(
                                   fontSize: 30.0, fontWeight: FontWeight.w600)),
                           SizedBox(
@@ -403,8 +402,8 @@ class RoomsActivationState extends State<RoomsActivation> {
                                               MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 Text(
-                                                  '${devices[index].Name}',
-                                                  style: TextStyle(
+                                                  devices[index].Name,
+                                                  style: const TextStyle(
                                                       fontSize: 20.0,
                                                       fontWeight: FontWeight.w600),
                                                   maxLines: 2,
@@ -418,7 +417,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                         builder:
                                                             (BuildContext context) {
                                                           return Container(
-                                                              child: Center(
+                                                              child: const Center(
                                                                   child:
                                                                   CircularProgressIndicator()));
                                                         });
@@ -443,7 +442,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                               )
 
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 25,
                           ),
                         ],
@@ -461,7 +460,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                           children: [
 
                             //inside Container white
-                            Text('Lights',
+                            const Text('Lights',
                                 style: TextStyle(
                                     fontSize: 30.0, fontWeight: FontWeight.w600)),
 
@@ -483,8 +482,8 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                                 children: [
-                                                  Text('${lights[index].Name}',
-                                                    style: TextStyle(
+                                                  Text(lights[index].Name,
+                                                    style: const TextStyle(
                                                         fontSize: 20.0,
                                                         fontWeight: FontWeight.w600),
                                                     maxLines: 2,
@@ -497,7 +496,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                           builder:
                                                               (BuildContext context) {
                                                             return Container(
-                                                                child: Center(
+                                                                child: const Center(
                                                                     child:
                                                                     CircularProgressIndicator()
                                                                 )
@@ -540,7 +539,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                           children: [
 
                             //inside Container white
-                            Text('Sockets',
+                            const Text('Sockets',
                                 style: TextStyle(
                                     fontSize: 30.0, fontWeight: FontWeight.w600)),
 
@@ -562,8 +561,8 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                                 children: [
-                                                  Text('${sockets[index].Name}',
-                                                    style: TextStyle(
+                                                  Text(sockets[index].Name,
+                                                    style: const TextStyle(
                                                         fontSize: 20.0,
                                                         fontWeight: FontWeight.w600),
                                                     maxLines: 2,
@@ -578,7 +577,7 @@ class RoomsActivationState extends State<RoomsActivation> {
                                                           builder:
                                                               (BuildContext context) {
                                                             return Container(
-                                                                child: Center(
+                                                                child: const Center(
                                                                     child:
                                                                     CircularProgressIndicator()
                                                                 )
@@ -624,7 +623,7 @@ class RoomsActivationState extends State<RoomsActivation> {
   void getStatusDoors() async {
     print("socket from inside is: " + doorID.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + doorID + '/value')
         .onValue
@@ -644,7 +643,7 @@ class RoomsActivationState extends State<RoomsActivation> {
   void getStatusDevices(int index) async {
     print("socket from inside is: " + devices[index].id.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + devices[index].id + '/value')
         .onValue
@@ -664,7 +663,7 @@ class RoomsActivationState extends State<RoomsActivation> {
   void getStatusLights(int index) async {
     print("socket from inside is: " + lights[index].id.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + lights[index].id + '/value')
         .onValue
@@ -684,7 +683,7 @@ class RoomsActivationState extends State<RoomsActivation> {
   void getStatusSockets(int index) async {
     print("socket from inside is: " + sockets[index].id.toString());
 
-    await FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .reference()
         .child('Devices/' + sockets[index].id + '/value')
         .onValue
@@ -825,7 +824,7 @@ class RoomsActivationState extends State<RoomsActivation> {
   }
 
   Future<void> turnOn(String id, int v) async {
-    print('$id');
+    print(id);
 
     final url = Uri.parse(
         'https://shomey-test-default-rtdb.firebaseio.com/Devices/$id.json');

@@ -252,6 +252,7 @@ class _SecurityCallHelpActivationState extends State<SecurityCallHelpActivation>
 
                                     }catch(e){
                                       print(e);
+                                      print(e);
                                     }
 
 
